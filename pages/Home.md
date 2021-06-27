@@ -7,9 +7,9 @@ Täältä löydät lähestulkoon täyden käännöksen LuckPermsin ohjeista plug
 ### Mistä aloittaa?
 Jos et ole ikinä käyttänyt permissioneita Minecraft-palvelimelta, suosittelemme aloittamaan ylhäältä ja siirtymään pikkuhiljaa alas päin!
 
-Permissioneiden perusteet on käyty läpi [Getting Started](käyttö) sivulla.
+Permissioneiden perusteet on käyty läpi [aloittaminen](Usage) sivulla.
 
-Lisää tietoa komennoista ja niiden käytöistä löytyy [Command Usage](komentojen käyttö) alasivuilta.
+Lisää tietoa komennoista ja niiden käytöistä löytyy [komentojen käyttö](Command-Usage) alasivuilta.
 
 ### How to get help
 
