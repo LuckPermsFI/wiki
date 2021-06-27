@@ -11,13 +11,16 @@ Permissioneiden perusteet on käyty läpi [aloittaminen](Usage) sivulla.
 
 Lisää tietoa komennoista ja niiden käytöistä löytyy [komentojen käyttö](Command-Usage) alasivuilta.
 
-### How to get help
+### Mistä saan apua?
 
-Support for the project is provided on [Discord](https://discord.gg/luckperms).
+Suomen kielistä yhteisön apuun perustuvaa tukea saat LuckPerms Suomen Discord-palvelimella:
 
-We would appreciate it if you try to look for an answer to your question here on the wiki first. It saves us having to repeatedly answer the same questions!
+Alkuperäisen LuckPermsin, englanninkielisen Discord-palvelimen löydät [täältä](https://discord.gg/luckperms).
 
-In particular, check the [FAQ](FAQ) page and the "How To" section. 🙂
+Arvostaisimme sitä, että etsit ensin ongelmaasi vastausta täältä wikistä ja Discord-palvelimelta käyttäen hakua `ctrl+f`. Tämä säästää meitä vastaamasta jatkuvasti samoihin kysymyksiin.
+
+Kannattaa ainakin tarkistaa meidän [FAQ](FAQ)-sivu, sekä aloittamisohjeet 🙂
+
 
 ### How to report bugs
 
