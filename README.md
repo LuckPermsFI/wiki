@@ -1,14 +1,16 @@
 # wiki
 
-Welcome to the LuckPerms wiki repository.
+Tervetuloa LuckPerms Suomen wiki-repositorioon.
 
-The wiki can be viewed on our website: https://luckperms.net/wiki
+Wikiä voi katsella meidän verkkosivuilla https://luckperms.fi/wiki
 
-### Layout
+Wiki on käännetty versio LuckPermsin sivuista osoitteessa https://luckperms.net/wiki ja perustuu GitHub-repositorioon https://github.com/LuckPerms/wiki
 
-* `/pages/` - the actual wiki content as markdown documents
-* `/img/` - image files which are embedded in the wiki pages
+### Asettelu
+
+* `/pages/` - itse wikin sisältö markdown-tiedostoina
+* `/img/` - kuvatiedostot, jotka ovat käytössä wikiartikkeleissa
 
 ### License
 
-The wiki content is licensed CC-BY-SA-4.0.
+Wikin sisältö on suojattu CC-BY-SA-4.0-lisenssillä, kuten alkuperäinenkin sisältö.
