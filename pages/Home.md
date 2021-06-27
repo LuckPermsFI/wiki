@@ -1,13 +1,15 @@
-Hello! :wave:
+Tervehdys! :wave:
 
-Welcome to the LuckPerms wiki. Here you will find a complete set of documentation for the plugin, outlining how to install, setup, configure and effectively use LuckPerms.
+Tervetuloa LuckPerms Suomen wikiin. LuckPerms Suomi on epävirallinen, suomen kielelle käännetty versio LuckPermsin Wikistä. Alkuperäisen wikin löydät osoitteesta https://luckperms.net/wiki/Home.
 
-### Where to start?
-If you've never used a permissions plugin before, we suggest you just start at the top and work your way down!
+Täältä löydät lähestulkoon täyden käännöksen LuckPermsin ohjeista pluginille. Alkaen ohjeista asennukseen, käyttöönottoon, konfigurointiin ja tehokkaaseen käyttöön. Tervetuloa!
 
-The basics of permissions are covered in detail in the [Getting Started](Usage) page.
+### Mistä aloittaa?
+Jos et ole ikinä käyttänyt permissioneita Minecraft-palvelimelta, suosittelemme aloittamaan ylhäältä ja siirtymään pikkuhiljaa alas päin!
 
-A more to the point command reference can be found in the [Command Usage](Command-Usage) subpages.
+Permissioneiden perusteet on käyty läpi [Getting Started](käyttö) sivulla.
+
+Lisää tietoa komennoista ja niiden käytöistä löytyy [Command Usage](komentojen käyttö) alasivuilta.
 
 ### How to get help
 
