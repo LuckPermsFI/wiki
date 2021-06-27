@@ -11,6 +11,6 @@ Wiki on käännetty versio LuckPermsin sivuista osoitteessa https://luckperms.ne
 * `/pages/` - itse wikin sisältö markdown-tiedostoina
 * `/img/` - kuvatiedostot, jotka ovat käytössä wikiartikkeleissa
 
-### License
+### Lisenssi
 
 Wikin sisältö on suojattu CC-BY-SA-4.0-lisenssillä, kuten alkuperäinenkin sisältö.
