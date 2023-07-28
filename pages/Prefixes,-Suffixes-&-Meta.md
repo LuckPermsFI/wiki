@@ -88,14 +88,20 @@ Some popular chat formatting plugins which work with LuckPerms + Vault include:
 * [ChatEx](https://dev.bukkit.org/projects/chatex)
 * [VentureChat](https://www.spigotmc.org/resources/771/)
 * [Stylizer](https://www.spigotmc.org/resources/stylizer.78327/) - includes chat formatting and tablist.
+* [DisplayFormatter](https://github.com/MCMDEV/displayformatter) - includes chat formatting and tablist, specifically for LuckPerms.
 * [CarbonChat](https://github.com/Hexaoxide/Carbon) (beta)
 * [DeluxeChat](https://www.spigotmc.org/resources/1277/) (paid)
-* [ChatControl](https://www.spigotmc.org/resources/10258/) (paid)
+* [ChatControl](https://builtbybit.com/resources/18217) (paid)
+* [CMI](https://www.spigotmc.org/resources/cmi-298-commands-insane-kits-portals-essentials-economy-mysql-sqlite-much-more.3742/) (paid)
+* [BetterPrefix](https://www.spigotmc.org/resources/betterprefix-papi-support.18096/)
 
 Some popular tab/nametag formatting plugins which work with LuckPerms + Vault include:
 * [NametagEdit](https://www.spigotmc.org/resources/3836/)
-* [TAB](https://www.spigotmc.org/resources/57806/)
+* [TAB](https://github.com/NEZNAMY/TAB)
 * [Tab](https://www.spigotmc.org/resources/1448/) (paid)
+* [CMI](https://www.spigotmc.org/resources/cmi-298-commands-insane-kits-portals-essentials-economy-mysql-sqlite-much-more.3742/) (paid)
+* [BetterPrefix](https://www.spigotmc.org/resources/betterprefix-papi-support.18096/)
+
 
 This is by no means a definitive list. Anything that supports Vault also supports LuckPerms!
 
@@ -109,11 +115,16 @@ Some popular chat formatting plugins which work with LuckPerms on BungeeCord inc
 
 Some popular tab/nametag formatting plugins which work with LuckPerms on BungeeCord include:
 * [BungeeTabListPlus](https://www.spigotmc.org/resources/313/)
-* [TAB](https://www.spigotmc.org/resources/57806/)
+* [TAB](https://github.com/NEZNAMY/TAB)
 
 ### Sponge
 * [Nucleus](https://nucleuspowered.org/) - an "essentials" like plugin, which also includes a [module for chat formatting](https://nucleuspowered.org/docs/modules/chat.html).
 
 ### Fabric
+* [Styled Chat](https://modrinth.com/mod/styled-chat) - includes chat formatting, uses [Fabric TextPlaceholderAPI](https://placeholders.pb4.eu) - Note that manual configuration is required and you need to use the [LuckPerms __Fabric__ PlaceholderAPI Addon](https://luckperms.net/download) for this mod to work with LuckPerms.
+* [Styled Player List](https://modrinth.com/mod/styledplayerlist) - includes tablist formatting, uses [Fabric TextPlaceholderAPI](https://placeholders.pb4.eu) - Note that manual configuration is required and you need to use the [LuckPerms __Fabric__ PlaceholderAPI Addon](https://luckperms.net/download) for this mod to work with LuckPerms.
 * [GraphiXMod](https://github.com/lochnessdragon/GraphiXMod) - includes chat formatting, holograms, tablist and scoreboard.
 * [Chatter](https://github.com/Axieum/Chatter) - includes chat formatting and Discord integration
+
+### Forge
+* [BetterForgeChat](https://www.curseforge.com/minecraft/mc-mods/betterforgechat-with-luckperms-support) - Includes chat formatting, tablist, ftbessentials nicknames, and markdown styling.

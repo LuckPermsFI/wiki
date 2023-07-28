@@ -10,7 +10,7 @@ First, *make sure LuckPerms is your only permission plugin!* We have had many is
 
 If LuckPerms is your only permission plugin, then the issue could be that you have not added the correct permissions for what you require. Always make sure to consult the documentation of the plugins you are using to see what the available permissions are. If the documentation is incomplete or you're unable to find any, then you can use [Verbose mode](Verbose) to see which permissions are being checked in real-time and what value LuckPerms returns for the user that is being checked.
 
-If you are running a Fabric server with LuckPerms, you **cannot use permissions with vanilla commands**. Unlike Bukkit/Spigot and Sponge, Fabric does not add permission checks for vanilla commands. This is not an issue with LuckPerms and it's something that may change in the future.
+If you are running a Fabric server with LuckPerms, you **cannot use permissions with vanilla commands**. Unlike Bukkit/Spigot and Sponge, Fabric does not add permission checks for vanilla commands. This is not an issue with LuckPerms. However, since Fabric supports modifying the base game, you may install an additional mod to add those permission checks, such as [Minecraft Command Permissions](https://github.com/lucko/minecraft-command-permissions-fabric) or [Command Hider](https://github.com/LoganDark/fabric-command-hider).
 
 Also note that individual mods may not support permissions either, as permissions in Fabric are not yet as standardized as they are in Bukkit/Spigot or Sponge.
 
@@ -100,6 +100,6 @@ Do either of the following to resolve this:
 
 - You can install LP locally (where you do have an internet connection), and then copy the content of the `/LuckPerms/libs/` directory to your other server, into the folder `/LuckPerms/libs/`.
 
-- Contact your server host to allow connections from [nexus.lucko.me](https://nexus.lucko.me/repository/maven-central/) and [repo1.maven.org](https://repo1.maven.org/maven2/).
+- Contact your server host to allow connections from [libraries.luckperms.net](https://libraries.luckperms.net/) and [repo1.maven.org](https://repo1.maven.org/maven2/).
 
 

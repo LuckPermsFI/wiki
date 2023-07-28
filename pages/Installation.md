@@ -19,6 +19,8 @@ Next, we need to install LuckPerms onto the server. Make sure you have selected 
 
 Navigate to your hosting panel's "File Manager", and open the `plugins` folder (for Bukkit, Nukkit, etc) or `mods` folder (for Sponge or Fabric).
 
+Note in step 1 that while Sponge can use 'plugins', these are not the same as Bukkit plugins. The Sponge version of LuckPerms and the Bukkit version are different JARs because they are not cross-compatible. Ensure you install the correct version!
+
 ![](../img/installation-1.png)
 
 Once you're in the plugins or mods folder, click upload and select the LuckPerms jar you downloaded in Step 1.
@@ -85,7 +87,7 @@ Remember, you'll need to complete these steps for all servers you have in your n
 ### Where do I install LuckPerms?
 * If you run a network of servers, you should install LuckPerms into the plugin folder of every server you want to use LuckPerms on.
 * If you also want to use LuckPerms to apply permissions on your BungeeCord proxy, you should place LuckPerms-Bungee.jar into your BungeeCord plugins folder.
-* If you choose to only install LuckPerms on your BungeeCord proxy, it will have no impact on any permission checks performed by plugins on any backend Bukkit/Sponge servers. If you want that functionality, you need to install LuckPerms on those servers too.
+* If you choose to only install LuckPerms on your proxy, it will have no impact on any permission checks performed by plugins on any backend Bukkit/Sponge servers. If you want that functionality, you need to install LuckPerms on those servers too.
 
 ### Can I just install LuckPerms on BungeeCord?
 * The permissions system used on BungeeCord is completely separate from the systems used on the backend Spigot/Sponge server.
@@ -114,6 +116,15 @@ Some known compatibility issues are outlined below. In all cases, these issues a
 
 Some of the compatibility issues are resolved in newer releases of the server - but the fixes are not backdated.
 
+### Other permission plugins
+For LuckPerms to fully work & handle all permission checks, it must be the only permission plugin installed on your server (unless you want to perform automatic migration)!
+
+We notice that people often to forget to remove the following permission plugins when they install LuckPerms:
+* PowerRanks
+* PermissionsEx
+* UltraPermissions
+
+---
 ### CraftBukkit and Offline Mode
 If your server is running CraftBukkit and configured in offline (cracked) mode, LuckPerms (and a number of other plugins, for that matter) will not work. This is due to a [CraftBukkit bug regarding the AsyncPlayerPreLoginEvent](https://hub.spigotmc.org/jira/browse/SPIGOT-3541).
 

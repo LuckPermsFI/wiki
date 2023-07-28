@@ -2,14 +2,15 @@ The main configuration file for LuckPerms can be found at these locations.
 
 | Platform      | Location                                                                                                                      |
 |---------------|-------------------------------------------------------------------------------------------------------------------------------|
-| Bukkit/Spigot | [`/plugins/LuckPerms/config.yml`](https://github.com/lucko/LuckPerms/blob/master/bukkit/src/main/resources/config.yml)        |
-| BungeeCord    | [`/plugins/LuckPerms/config.yml`](https://github.com/lucko/LuckPerms/blob/master/bungee/src/main/resources/config.yml)        |
-| Sponge        | [`/config/luckperms/luckperms.conf`](https://github.com/lucko/LuckPerms/blob/master/sponge/src/main/resources/luckperms.conf) |
-| Fabric        | [`/config/luckperms/luckperms.conf`](https://github.com/lucko/LuckPerms/blob/master/fabric/src/main/resources/luckperms.conf) |
-| Nukkit        | [`/plugins/LuckPerms/config.yml`](https://github.com/lucko/LuckPerms/blob/master/nukkit/src/main/resources/config.yml)        |
-| Velocity      | [`/plugins/luckperms/config.yml`](https://github.com/lucko/LuckPerms/blob/master/velocity/src/main/resources/config.yml)      |
+| Bukkit/Spigot | [`/plugins/LuckPerms/config.yml`](https://github.com/LuckPerms/LuckPerms/blob/master/bukkit/src/main/resources/config.yml)        |
+| BungeeCord    | [`/plugins/LuckPerms/config.yml`](https://github.com/LuckPerms/LuckPerms/blob/master/bungee/src/main/resources/config.yml)        |
+| Sponge        | [`/config/luckperms/luckperms.conf`](https://github.com/LuckPerms/LuckPerms/blob/master/sponge/src/main/resources/luckperms.conf) |
+| Fabric        | [`/config/luckperms/luckperms.conf`](https://github.com/LuckPerms/LuckPerms/blob/master/fabric/src/main/resources/luckperms.conf) |
+| Forge         | [`/config/luckperms/luckperms.conf`](https://github.com/LuckPerms/LuckPerms/blob/master/forge/src/main/resources/luckperms.conf)  |
+| Nukkit        | [`/plugins/LuckPerms/config.yml`](https://github.com/LuckPerms/LuckPerms/blob/master/nukkit/src/main/resources/config.yml)        |
+| Velocity      | [`/plugins/luckperms/config.yml`](https://github.com/LuckPerms/LuckPerms/blob/master/velocity/src/main/resources/config.yml)      |
 
-Links to the default file for each platform are above. Please note that the configuration does not automatically update when new options are added. The default options are used if nothing is found in the file.
+Links to the default file for each platform are above. Please note that the configuration file does not automatically update when new options are added. The default options are used if nothing is found in the file.
 
 # Index
 ### Essential Settings
@@ -89,6 +90,63 @@ Links to the default file for each platform are above. Please note that the conf
 * [`allow-invalid-usernames`](#allow-invalid-usernames)
 * [`prevent-primary-group-removal`](#prevent-primary-group-removal)
 * [`contexts.json`](#contextsjson)
+
+# Config Sources
+
+LuckPerms will attempt to resolve configuration settings from various sources (in the following order).
+
+1. **System Properties**
+2. **Environment Variables**
+3. **Configuration File** (`config.yml` or `luckperms.conf`, depending on the platform)
+4. Fallback to default values
+
+### System Properties
+
+[System properties](https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html) are a generic way to configure Java applications. They can either be set using a command line flag, or programatically using the [`java.lang.System`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/System.html) API.
+
+e.g. To replicate the following YAML from a LuckPerms config.yml with system properties:
+
+```yaml
+server: example
+
+storage-method: mysql
+data:
+  address: 192.168.0.100
+```
+
+... start your server with the following arguments:
+
+```
+java
+  -Dluckperms.server=example
+  -Dluckperms.storage-method=mysql
+  -Dluckperms.data.address=192.168.0.100
+  -jar server.jar
+```
+
+### Environment Variables
+
+[Enviroment variables](https://en.wikipedia.org/wiki/Environment_variable) are a generic way to configure any application. The way they are defined depends on your setup. An example is given below for unix-like shells, but you can also [easily set them](https://docs.docker.com/engine/reference/commandline/run/#set-environment-variables--e---env---env-file) if you're running your server in a Docker container, for example.
+
+e.g. To replicate the following YAML from a LuckPerms config.yml with environment variables:
+
+```yaml
+server: example
+
+storage-method: mysql
+data:
+  address: 192.168.0.100
+```
+
+... start your server like so:
+
+```bash
+export LUCKPERMS_SERVER="example"
+export LUCKPERMS_STORAGE_METHOD="mysql"
+export LUCKPERMS_DATA_ADDRESS="192.168.0.100"
+
+java -jar server.jar
+```
 
 # Descriptions
 
@@ -272,14 +330,26 @@ ___
 ### `redis`
 Settings for Redis.
 
-* **`address`** - the host to be used for redis. Uses the standard port by default (6379). If you have a non-default port, specify it here using `host:port`.
+* **`address`** - the host to be used for redis (single node). Uses the standard port by default (6379). If you have a non-default port, specify it here using `host:port`.
+* **`addresses`** - the hosts to be used for redis (cluster).
 * **`password`** - the password to be used. Leave empty to use no authentication.
 
 ##### Example
+For redis single node:
 ```yaml
 redis:
   enabled: true
   address: localhost
+  password: 'passw0rd'
+```
+
+For redis cluster:
+```yaml
+redis:
+  enabled: true
+  addresses:
+    - redis-node1
+    - redis-node2
   password: 'passw0rd'
 ```
 

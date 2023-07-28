@@ -538,6 +538,7 @@ The subject type varies between platforms.
 | BungeeCord | `net.md_5.bungee.api.connection.ProxiedPlayer`     |
 | Sponge     | `org.spongepowered.api.service.permission.Subject` |
 | Fabric     | `net.minecraft.server.network.ServerPlayerEntity`  |
+| Forge      | `net.minecraft.server.level.ServerPlayer`          |
 | Nukkit     | `cn.nukkit.Player`                                 |
 | Velocity   | `com.velocitypowered.api.proxy.Player`             |
 
@@ -611,36 +612,44 @@ ___
 
 ### The basics of CachedData
 
-All `User`s and `Group`s also have an extra object attached to them called `CachedData`. This is the name of the caching class used by LuckPerms to store easily query-able data for all permission holders.
-
-The lookup methods provided by this class are very fast. If you're doing frequent data lookups, it is highly recommended that if possible, you use `CachedData` over the methods in `User` and `Group`.
+All `User`s and `Group`s also have an extra object attached to them called `CachedData`. This is the name of the caching class used by LuckPerms to store easily query-able data for all permission holders. The lookup methods provided by this class are very fast. If you're doing frequent data lookups, it is highly recommended that you use `CachedData` over the methods in `User` and `Group`.
 
 Everything in `CachedData` is indexed by `QueryOptions`, as this is how LuckPerms processes all lookups internally.
 
 The contained data is split into two separate sections: `CachedPermissionData` and `CachedMetaData`.
 
-`CachedPermissionData` contains the user/groups fully resolved map of permissions, and allows you to run permission checks in exactly the same way as you would using the Player class provided by the platform.
-
-`CachedMetaData` contains information about a user/groups prefixes, suffixes, and meta values.
+* `CachedPermissionData` contains the user/groups fully resolved map of permissions, and allows you to run permission checks in exactly the same way as you would using the Player class provided by the platform.
+* `CachedMetaData` contains information about a user/groups prefixes, suffixes, and meta values.
 
 #### Obtaining `CachedPermissionData` and `CachedMetaData`
 
-You need:
+You need either:
 
-* A `User` or `Group` instance
+* A platform `Player` instance
+* A LuckPerms `User` or `Group` instance + optionally some `QueryOptions` (see above for how to obtain this)
 
-* The `QueryOptions` to get the data in (see above for how to obtain this)
+If you have a `Player` platform instance (like *org.bukkit.entity.Player*), you can use the `PlayerAdapter` to obtain cached data.
 
 ```java
-CachedPermissionData permissionData = user.getCachedData().getPermissionData(queryOptions);
-CachedMetaData metaData = user.getCachedData().getMetaData(queryOptions);
+Player player = ...;
+PlayerAdapter<Player> adapter = luckperms.getPlayerAdapter(Player.class);
 
-// If you want to just use the most appropriate current query options for the User..
-// i.e. 'cm.getQueryOptions(user).orElse(cm.getStaticQueryOptions())'
-// .. then you can skip the queryOpptions parameter.
+CachedPermissionData permissionData = adapter.getPermissionData(player);
+CachedMetaData metaData = adapter.getMetaData(player);
+```
+
+If you already have a LuckPerms `User` or `Group` instance, you can use the following methods to obtain cached data.
+```java
+// Will attempt to use the most appropriate currect query options for the User
 CachedPermissionData permissionData = user.getCachedData().getPermissionData();
 CachedMetaData metaData = user.getCachedData().getMetaData();
+
+// You can also manually specify which query options to use
+CachedPermissionData permissionData = user.getCachedData().getPermissionData(queryOptions);
+CachedMetaData metaData = user.getCachedData().getMetaData(queryOptions);
 ```
+
+Once you have a cached data instance, you can perform lots of different queries.
 
 #### Performing permission checks
 
@@ -652,7 +661,7 @@ Tristate checkResult = permissionData.checkPermission("some.permission.node");
 boolean checkResultAsBoolean = checkResult.asBoolean();
 ```
 
-We can put all of this together to create a method that can run a "normal" permission check with passed a `User` and a `String` (the permission).
+We can put all of this together to create a method that can run a "normal" permission check when passed a `User` and a `String` (the permission).
 
 ```java
 public boolean hasPermission(User user, String permission) {
@@ -673,7 +682,7 @@ String suffix = user.getCachedData().getMetaData().getSuffix();
 String metaValue = user.getCachedData().getMetaData().getMetaValue("some-key");
 ```
 
-Of course these methods work with `Group`s too!
+These methods work with `Group`s too!
 
 ___
 
@@ -727,11 +736,11 @@ ___
 
 LuckPerms uses it's own event system, completely separate from the event systems used by platforms (e.g. Bukkit or Sponge). This means that instead of registering your listener with the server, you must register it directly with LuckPerms.
 
-The events supported by LuckPerms are defined as `interface`s that extend from [`LuckPermsEvent`](https://github.com/lucko/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/LuckPermsEvent.java). They can be found in the [`net.luckperms.api.event`](https://github.com/lucko/LuckPerms/tree/master/api/src/main/java/net/luckperms/api/event) package.
+The events supported by LuckPerms are defined as `interface`s that extend from [`LuckPermsEvent`](https://github.com/LuckPerms/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/LuckPermsEvent.java). They can be found in the [`net.luckperms.api.event`](https://github.com/LuckPerms/LuckPerms/tree/master/api/src/main/java/net/luckperms/api/event) package.
 
 #### Event listeners
 
-To listen to events, you first need to obtain the [`EventBus`](https://github.com/lucko/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/EventBus.java) instance using `LuckPerms#getEventBus`, then register each listener using the `subscribe` method.
+To listen to events, you first need to obtain the [`EventBus`](https://github.com/LuckPerms/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/EventBus.java) instance using `LuckPerms#getEventBus`, then register each listener using the `subscribe` method.
 
 The `subscribe` method accepts a `java.util.function.Consumer` object - which allows listeners to be defined as:
 
@@ -777,7 +786,7 @@ If your listener is simple, then an expression or statement lambda is best. If y
 
 #### Listening for changes to user cached data
 
-If you have a system that depends on a users cached data (e.g. their prefix or permission state), then you may find it necessary to perform some action in your plugin when the data changes (e.g. invalidate or update a cache). The best & most simple event to use to achieve this is the [`UserDataRecalculateEvent`](https://github.com/lucko/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/user/UserDataRecalculateEvent.java).
+If you have a system that depends on a users cached data (e.g. their prefix or permission state), then you may find it necessary to perform some action in your plugin when the data changes (e.g. invalidate or update a cache). The best & most simple event to use to achieve this is the [`UserDataRecalculateEvent`](https://github.com/LuckPerms/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/user/UserDataRecalculateEvent.java).
 
 This is a simple event that is "called when a User's cached data is refreshed". It doesn't give any information about what caused the refresh - just that it happened!
 
@@ -785,11 +794,11 @@ This is a simple event that is "called when a User's cached data is refreshed". 
 
 Recall from earlier that [all user/group data is stored as `Node`s](#the-basics-of-node) - introducing:
 
-* the [`NodeAddEvent`](https://github.com/lucko/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/node/NodeAddEvent.java) - called when a node is added to a user/group
-* the [`NodeRemoteEvent`](https://github.com/lucko/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/node/NodeRemoveEvent.java) - called when a node is removed from a user/group
-* the [`NodeClearEvent`](https://github.com/lucko/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/node/NodeClearEvent.java) - called when a user/group has all/some their existing nodes removed
+* the [`NodeAddEvent`](https://github.com/LuckPerms/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/node/NodeAddEvent.java) - called when a node is added to a user/group
+* the [`NodeRemoveEvent`](https://github.com/LuckPerms/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/node/NodeRemoveEvent.java) - called when a node is removed from a user/group
+* the [`NodeClearEvent`](https://github.com/LuckPerms/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/node/NodeClearEvent.java) - called when a user/group has all/some their existing nodes removed
 
-All of these events extend from [`NodeMutateEvent`](https://github.com/lucko/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/node/NodeMutateEvent.java) which defines the base properties.
+All of these events extend from [`NodeMutateEvent`](https://github.com/LuckPerms/LuckPerms/blob/master/api/src/main/java/net/luckperms/api/event/node/NodeMutateEvent.java) which defines the base properties.
 
 These events cover all possible changes that could be made to a user/groups LuckPerms data. The trick is to figure out which event you need, and how to filter down to only catch the desired changes.
 

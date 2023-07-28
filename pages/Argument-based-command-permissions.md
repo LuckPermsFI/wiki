@@ -1,5 +1,7 @@
 This page documents the [`argument-based-command-permissions`](Configuration#argument-based-command-permissions) configuration option.
 
+**For any of the following permissions to work, you must first enable [`argument-based-command-permissions: true`](Configuration#argument-based-command-permissions) in your [config.yml](Configuration#argument-based-command-permissions)**!
+
 When this option is enabled, LuckPerms will run extra permission checks when a player tries to modify or view permission data.
 
 These permissions allow for finer control over what changes a player is able to do, including preventing them from granting specific groups, or making changes in certain contexts.
@@ -185,7 +187,7 @@ This is a very common question, and quite simple to set up. All you need to do i
 | Permission                                                                        | Value                 |
 |-----------------------------------------------------------------------------------|-----------------------|
 | `luckperms.user.promote`                                                          | true                  |
-| `luckperms.user.promote.*` <--- This in only needed on Sponge                     | false                 |
+| `luckperms.user.promote.*` <--- This is only needed on Sponge                     | false                 |
 | `luckperms.user.promote.modify.others `                                           | true                  |
 | `luckperms.user.promote.<track>.*`                                                | true                  |
 | `luckperms.user.promote.<track>.<{all,groups,they,cannot,promote,to,or,past}>`    | false                 |

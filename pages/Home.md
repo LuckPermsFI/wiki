@@ -24,7 +24,7 @@ Kannattaa ainakin tarkistaa meidän [FAQ](FAQ)-sivu, sekä aloittamisohjeet 🙂
 
 ### How to report bugs
 
-Bug reports live on [GitHub](https://github.com/lucko/LuckPerms/issues).
+Bug reports live on [GitHub](https://github.com/LuckPerms/LuckPerms/issues).
 
 You'll need to create a GitHub account, then open a new "issue".
 
